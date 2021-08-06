@@ -1,49 +1,51 @@
 import React from 'react';
+import { ZoomMtg } from "@zoomus/websdk";
 
-import './App.css';
 
-declare var ZoomMtg
 
 ZoomMtg.setZoomJSLib('https://source.zoom.us/1.9.7/lib', '/av');
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareWebSDK();
-// loads language files, also passes any error messages to the ui
+
 ZoomMtg.i18n.load('en-US');
 ZoomMtg.i18n.reload('en-US');
 
 function App() {
 
-  // setup your signature endpoint here: https://github.com/zoom/websdk-sample-signature-node.js
-  var signatureEndpoint = ''
-  var apiKey = ''
-  var meetingNumber = '123456789'
+  
+  var apiSecret = 'dXNpRJHw9Oeme5tqiNEvpBsJ8EfOh0UDBB25'
+  var apiKey = 'MVfVOSCEQwGZNKFD2slZ-w'
+  var meetingNumber = 97350326810
   var role = 0
   var leaveUrl = 'http://localhost:3000'
   var userName = 'React'
   var userEmail = ''
-  var passWord = ''
-  // pass in the registrant's token if your meeting or webinar requires registration. More info here:
-  // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/meetings/join#join-registered
-  // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/webinars/join#join-registered-webinar
-  var registrantToken = ''
+  var passWord = 'cPrBW6'
+
+  const crypto = require("crypto"); 
+
+  function generateSignature(apiKey, apiSecret, meetingNumber, role) {
+
+      const timestamp = new Date().getTime() - 30000;
+      const msg = Buffer.from(apiKey + meetingNumber + timestamp + role).toString(
+        "base64"
+      );
+      const hash = crypto
+        .createHmac("sha256", apiSecret)
+        .update(msg)
+        .digest("base64");
+      const signature = Buffer.from(
+        `${apiKey}.${meetingNumber}.${timestamp}.${role}.${hash}`
+      ).toString("base64");
+  
+      return signature    
+  }
 
   function getSignature(e) {
-    e.preventDefault();
-
-    fetch(signatureEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        meetingNumber: meetingNumber,
-        role: role
-      })
-    }).then(res => res.json())
-    .then(response => {
-      startMeeting(response.signature)
-    }).catch(error => {
-      console.error(error)
-    })
+      let signature = generateSignature(apiKey, apiSecret, meetingNumber, role);
+      startMeeting(signature)
+  
   }
 
   function startMeeting(signature) {
@@ -60,8 +62,7 @@ function App() {
           userName: userName,
           apiKey: apiKey,
           userEmail: userEmail,
-          passWord: passWord,
-          tk: registrantToken,
+          passWord: passWord,          
           success: (success) => {
             console.log(success)
           },
@@ -79,11 +80,7 @@ function App() {
 
   return (
     <div className="App">
-      <main>
-        <h1>Zoom WebSDK Sample React</h1>
-
-        <button onClick={getSignature}>Join Meeting</button>
-      </main>
+      
     </div>
   );
 }
