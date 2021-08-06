@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a3d86042d724a07ce886723ed869f029",
+    "revision": "2a9d116ade4183f45d7391314668b871",
     "url": "/zoom-atel/index.html"
   },
   {
-    "revision": "3a21902898eaa1d08167",
-    "url": "/zoom-atel/static/css/main.df70d2ac.chunk.css"
+    "revision": "973fe4d75fb36569ae12",
+    "url": "/zoom-atel/static/css/main.e43a6998.chunk.css"
   },
   {
     "revision": "19d35d2e1d9576526a9f",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zoom-atel/static/js/3.91f44726.chunk.js"
   },
   {
-    "revision": "3a21902898eaa1d08167",
-    "url": "/zoom-atel/static/js/main.6bf4285f.chunk.js"
+    "revision": "973fe4d75fb36569ae12",
+    "url": "/zoom-atel/static/js/main.29070992.chunk.js"
   },
   {
     "revision": "a91491ed587ae0d8ca7d",
