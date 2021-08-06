@@ -1,18 +1,15 @@
-import React,{Component} from 'react';
-import {  Route, Switch, Router } from 'react-router-dom';
-import Zoom from './Zoom'
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import Zoom from './Zoom';
 
-class App  extends Component {
-
+class App extends Component {
   render() {
     return (
-    <div className="App">      
-    
-      <Switch>
-        <Route path="/zoom/:room" component={Zoom}></Route>
-      </Switch>
-    
-    </div>
+      <div className="App">
+        <Switch>
+          <Route path="/zoom/:room" component={Zoom}></Route>
+        </Switch>
+      </div>
     );
   }
 }
