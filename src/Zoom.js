@@ -17,7 +17,7 @@ const Zoom = () => {
     meetingNumber = params[0],
     role = 0,
     leaveUrl = 'http://localhost:3000',
-    userName = 'React',
+    userName = params[2],
     userEmail = '',
     passWord = params[1];
 
