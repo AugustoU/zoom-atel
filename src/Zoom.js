@@ -71,7 +71,10 @@ const Zoom = () => {
       },
     });
   }
+  
   getSignature();
+  var click = document.getElementsByClassName("zm-btn joinWindowBtn btn btn-primary btn-block btn-lg submit zm-btn--default zm-btn__outline--blue")
+  click[0].click();
 
   return <></>;
 };
