@@ -69,7 +69,12 @@ const Zoom = () => {
           userEmail: userEmail,
           passWord: passWord,          
           success: (success) => {
-            console.log(success)
+            // debugger;
+            setTimeout(() => {
+              debugger;
+              var element = document.getElementsByClassName ("zm-btn join-audio-by-voip__join-btn zm-btn--primary zm-btn__outline--white zm-btn--lg")
+              element[0].click();
+            },4000)
           },
           error: (error) => {
             console.log(error)
@@ -81,6 +86,9 @@ const Zoom = () => {
         console.log(error)
       }
     })
+
+    var element = document.getElementsByClassName("zm-btn joinWindowBtn btn btn-primary btn-block btn-lg submit zm-btn--default zm-btn__outline--blue");
+    element[0].click();
   }
   getSignature();
 
